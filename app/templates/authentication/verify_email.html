@@ -1,0 +1,16 @@
+<div ng-show="vm.verified">
+  <p>
+    Thank you for verifying your email address.
+    Your account is now fully activated.
+  </p>
+</div>
+<div ng-hide="vm.verified">
+  <p>
+    Please wait while your email is being verified...
+  </p>
+</div>
+<div ng-show="vm.error">
+  <p>
+    There was an error verifying your email address.
+  </p>
+</div>
