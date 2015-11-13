@@ -193,7 +193,7 @@
 	FB.login( fbLoginButtonFinishFn, { scope: 'public_profile,email' } );
       } else if( provider.toLowerCase( ) === 'google' ) {
 	gapi.auth.authorize(
-	  { 'client_id': '',
+	  { 'client_id': '412896030843-s57fn5q6b931fq8ljckcvukah376qv9b.apps.googleusercontent.com',
 	    'scope': 'email',
 	    'immediate': false }, googleLoginButtonFinishFn );	
       } else {
