@@ -1,3 +1,6 @@
 [submodule "ext/endpoints_proto_datastore"]
 	path = ext/endpoints_proto_datastore
 	url = https://github.com/GoogleCloudPlatform/endpoints-proto-datastore
+[submodule "ext/authtopus"]
+	path = ext/authtopus
+	url = https://github.com/rggibson/Authtopus.git
