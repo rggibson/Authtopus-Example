@@ -1,0 +1,8 @@
+cron:
+- description: clean up expired tokens
+  url: /auth/cleanup-tokens
+  schedule: every 24 hours
+
+- description: clean up unverified, inactive users
+  url: /auth/cleanup-users
+  schedule: every 168 hours

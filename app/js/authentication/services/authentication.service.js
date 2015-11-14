@@ -195,7 +195,7 @@
 	gapi.auth.authorize(
 	  { 'client_id': '412896030843-s57fn5q6b931fq8ljckcvukah376qv9b.apps.googleusercontent.com',
 	    'scope': 'email',
-	    'immediate': false }, googleLoginButtonFinishFn );	
+	    'immediate': false }, googleLoginButtonFinishFn );
       } else {
 	deferred.reject( {
 	  status: 400,
