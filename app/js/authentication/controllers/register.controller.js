@@ -9,18 +9,20 @@
     .module( 'authtopusexample.authentication.controllers' )
     .controller( 'RegisterController', RegisterController );
 
-  RegisterController.$inject = [ '$location', '$scope', 'Constants',
-				 'Authentication' ];
+  RegisterController.$inject = [ '$location', '$scope', '$rootScope',
+				 'Constants', 'Authentication' ];
 
   /**
    * @namespace RegisterController
    */
-  function RegisterController( $location, $scope, Constants, Authentication ) {
+  function RegisterController( $location, $scope, $rootScope,
+			       Constants, Authentication ) {
     var vm = this;
 
     vm.register = register;
     vm.socialLogin = socialLogin;
     vm.passwordResetPath = Constants.passwordResetPath;
+    vm.fbInit = function( ) { return $rootScope.fbInit; }
     
     activate( );
 
