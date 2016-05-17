@@ -38,7 +38,9 @@
 	version    : 'v2.5'
       } );
 
-      $rootScope.fbInit = true;
+      $rootScope.$apply( function( ) {
+	$rootScope.fbInit = true;
+      } );
     }
   }
   
