@@ -21,13 +21,25 @@
     .module( 'authtopusexample' )
     .run( run );
 
-  run.$inject = [ '$http' ];
+  run.$inject = [ '$rootScope', '$window' ];
 
   /**
    * @name run
-   * @desc Do nothing for now
+   * @desc Set flag when FB auth SDK loads so that we know when our FB login
+   * button will work.
    */
-  function run( $http ) {
+  function run( $rootScope, $window ) {
+    $rootScope.fbInit = false;
+    
+    $window.fbAsyncInit = function( ) {
+      FB.init( {
+	appId      : '891867817566349',
+	xfbml      : true,
+	version    : 'v2.5'
+      } );
+
+      $rootScope.fbInit = true;
+    }
   }
   
 } )( );

@@ -41,7 +41,8 @@
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</div>
       </form>
-      <button ng-click="vm.socialLogin( 'Facebook' )">Facebook Login</button>
+      <button ng-disabled="!vm.fbInit( )"
+	      ng-click="vm.socialLogin( 'Facebook' )">Facebook Login</button>
       <button ng-click="vm.socialLogin( 'Google' )">Google Login</button>
       <div class="error" ng-bind="vm.social_error"></div>
     </div>

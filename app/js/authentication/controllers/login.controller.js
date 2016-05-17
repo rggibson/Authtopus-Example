@@ -10,18 +10,19 @@
     .controller( 'LoginController', LoginController );
 
   LoginController.$inject = [ '$location', '$scope', '$routeParams',
-			      'Constants', 'Authentication' ];
+			      '$rootScope', 'Constants', 'Authentication' ];
 
   /**
    * @namespace LoginController
    */
-  function LoginController( $location, $scope, $routeParams, Constants,
-			    Authentication ) {
+  function LoginController( $location, $scope, $routeParams, $rootScope,
+			    Constants, Authentication ) {
     var vm = this;
 
     vm.login = login;
     vm.socialLogin = socialLogin;
     vm.passwordResetPath = Constants.passwordResetPath;
+    vm.fbInit = function( ) { return $rootScope.fbInit; }
 
     activate( );
 
