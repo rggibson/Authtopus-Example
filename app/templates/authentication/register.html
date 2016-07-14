@@ -37,6 +37,14 @@
 	  <div class="error" ng-bind="vm.verify_password_error"></div>
 	</div>
 
+	<div class="checkbox">
+	  <label>
+	    <input type="checkbox" ng-model="vm.checkbox">
+	    This box must be checked to register
+	  </label>
+	  <div class="error" ng-bind="vm.checkbox_error"></div>
+	</div>
+
 	<div class="form-group">
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</div>

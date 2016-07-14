@@ -180,13 +180,14 @@
      * @name fblogin
      * @desc Call the Facebook/Google API to do a login to retrieve an Auth
      * token
-     * @param provider The name of the provider (only Facebook and Google
-     * currently supported)
-     * @param to (optional) Path to redirect to after successful login
+     * @param provider {string} The name of the provider (only Facebook and
+     * Google currently supported)
+     * @param registerNewUser {bool} Indicates whether we should register a
+     * new user or not
      * @returns {Promise}
      * @memberOf authtopusexample.authentication.services.Authentication
      */
-    function socialLogin( provider ) {
+    function socialLogin( provider, registerNewUser ) {
       var deferred = $q.defer( );
       
       if( provider.toLowerCase( ) === 'facebook' ) {
@@ -208,7 +209,7 @@
       }
 
       return deferred.promise;
-
+      
       /**
        * @name fbLoginButtonFinishFn
        * @desc Handle the response of the Facebook login attempt, logging the
@@ -218,14 +219,15 @@
       function fbLoginButtonFinishFn( response ) {
 	console.log( 'FB Login button finished, response:' );
 	console.log( response );
-
+	
 	if( response.status === 'connected' ) {
-	  return $http.post( Constants.serverRoot
-			     + '/auth/v1.0/social_login', {
-	    access_token: response.authResponse.accessToken,
-	    provider: 'Facebook'
-	  } ).then( function( response ) { deferred.resolve( response ) },
-		    function( response ) { deferred.reject( response ) } );
+	  return $http.post(
+	    Constants.serverRoot + '/auth/v1.0/social_login', {
+	      access_token: response.authResponse.accessToken,
+	      provider: 'Facebook',
+	      register_new_user: registerNewUser
+	    } ).then( function( response ) { deferred.resolve( response ) },
+		      function( response ) { deferred.reject( response ) } );
 	} else {
 	  deferred.reject( {
 	    data: {
@@ -248,12 +250,13 @@
 	console.log( authResult );
 
 	if( authResult ) {
-	  return $http.post( Constants.serverRoot
-			     + '/auth/v1.0/social_login/', {
-	    access_token: authResult.access_token,
-	    provider: 'Google'
-	  } ).then( function( response ) { deferred.resolve( response ) },
-		    function( response ) { deferred.reject( response ) } );
+	  return $http.post(
+	    Constants.serverRoot + '/auth/v1.0/social_login/', {
+	      access_token: authResult.access_token,
+	      provider: 'Google',
+	      register_new_user: registerNewUser
+	    } ).then( function( response ) { deferred.resolve( response ) },
+		      function( response ) { deferred.reject( response ) } );
 	} else {
 	  console.error( "Invalid authResult!" );
 	}

@@ -49,15 +49,18 @@
       vm.username_error = '';
       vm.password_error = '';
       vm.verify_password_error = '';
+      vm.checkbox_error = '';
       vm.display_forgotten_password = false;
       
-      if( vm.password == vm.verify_password ) {
-	Authentication.register( vm.email, vm.password, vm.username )
-	  .then( registerSuccessFn, registerFailFn );
-      } else {
+      if( vm.password != vm.verify_password ) {
 	vm.verify_password_error = 'Passwords do not match!';
 	vm.password = '';
 	vm.verify_password = '';
+      } else if( !vm.checkbox ) {
+	vm.checkbox_error = 'The box is not checked!';
+      } else {
+	Authentication.register( vm.email, vm.password, vm.username )
+	  .then( registerSuccessFn, registerFailFn );
       }
 
       function registerSuccessFn( response ) {
@@ -138,8 +141,13 @@
      * @memberOf authtopusexample.authentication.controllers.LoginController
      */
     function socialLogin( provider ) {
-      Authentication.socialLogin( provider )
-	.then( Authentication.socialLoginSuccessFn, socialLoginFailFn );
+      vm.checkbox_error = '';
+      if( !vm.checkbox ) {
+	vm.checkbox_error = 'The box is not checked!';
+      } else {
+	Authentication.socialLogin( provider, true )
+	  .then( Authentication.socialLoginSuccessFn, socialLoginFailFn );
+      }
 
       function socialLoginFailFn( response ) {
 	vm.social_error = response.data.error.message;

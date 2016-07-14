@@ -70,7 +70,7 @@
      * @memberOf authtopusexample.authentication.controllers.LoginController
      */
     function socialLogin( provider ) {
-      Authentication.socialLogin( provider )
+      Authentication.socialLogin( provider, false )
 	.then( Authentication.socialLoginSuccessFn, socialLoginFailFn );
 
       function socialLoginFailFn( response ) {
