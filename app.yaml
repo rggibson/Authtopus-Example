@@ -18,11 +18,11 @@ handlers:
 # App handlers
 - url: (.*)/(|login|register|user/verify|user/edit/.*|password-reset|set-password|social-login-password)
   secure: always
-  static_files: app\1/index.html
-  upload: app
+  static_files: webapp\1/index.html
+  upload: webapp
 - url: (.*)
-  static_files: app\1
-  upload: app
+  static_files: webapp\1
+  upload: webapp
 
 libraries:
 - name: pycrypto
