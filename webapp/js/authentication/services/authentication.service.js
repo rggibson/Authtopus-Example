@@ -115,7 +115,8 @@
 	password: password,
 	email: email,
 	verification_url: ( $location.protocol( ) + "://" + $location.host( )
-			    + Constants.verificationPath )
+			    + Constants.verificationPath ),
+	data: JSON.stringify( { method: 'username+password' } )
       } );
     }
 
@@ -225,7 +226,8 @@
 	    Constants.serverRoot + '/auth/v1.0/social_login', {
 	      access_token: response.authResponse.accessToken,
 	      provider: 'Facebook',
-	      register_new_user: registerNewUser
+	      register_new_user: registerNewUser,
+	      data: JSON.stringify( { method: 'Facebook' } )
 	    } ).then( function( response ) { deferred.resolve( response ) },
 		      function( response ) { deferred.reject( response ) } );
 	} else {
@@ -254,7 +256,8 @@
 	    Constants.serverRoot + '/auth/v1.0/social_login/', {
 	      access_token: authResult.access_token,
 	      provider: 'Google',
-	      register_new_user: registerNewUser
+	      register_new_user: registerNewUser,
+	      data: JSON.stringify( { method: 'Google' } )
 	    } ).then( function( response ) { deferred.resolve( response ) },
 		      function( response ) { deferred.reject( response ) } );
 	} else {
