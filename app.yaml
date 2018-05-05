@@ -9,7 +9,7 @@ builtins:
 
 handlers:
 # Endpoints handler
-- url: /_ah/spi/.*
+- url: /_ah/api/.*
   script: main.API
 # Cron handlers
 - url: /cron/.*
@@ -26,8 +26,8 @@ handlers:
 
 libraries:
 - name: pycrypto
-  version: latest
-- name: endpoints
-  version: 1.0
+  version: 2.6
 - name: webapp2
   version: 2.5.2
+- name: ssl
+  version: 2.7.11
